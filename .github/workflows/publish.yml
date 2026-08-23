@@ -59,8 +59,18 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
           if ! git ls-remote --exit-code --heads origin "refs/heads/${{ env.PAGES_BRANCH }}" 2>/dev/null; then
             git checkout --orphan "${{ env.PAGES_BRANCH }}"
-            git rm -rf . && git commit --allow-empty -m "Initialize manifest branch"
+            git rm -rf . && printf '[]' > manifest.json
+            git add manifest.json
+            git commit -m "Initialize manifest branch"
             git push origin "${{ env.PAGES_BRANCH }}"
+          else
+            git checkout "${{ env.PAGES_BRANCH }}"
+            if [ ! -f manifest.json ]; then
+              printf '[]' > manifest.json
+              git add manifest.json
+              git commit -m "Initialize manifest file"
+              git push origin "${{ env.PAGES_BRANCH }}"
+            fi
           fi
         env:
           PAGES_BRANCH: manifest-release
