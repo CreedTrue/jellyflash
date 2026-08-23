@@ -55,6 +55,8 @@ jobs:
 
       - name: Create pagesBranch if it does not exist
         run: |
+          git config user.name "${GITHUB_ACTOR}"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
           if ! git ls-remote --exit-code --heads origin "refs/heads/${{ env.PAGES_BRANCH }}" 2>/dev/null; then
             git checkout --orphan "${{ env.PAGES_BRANCH }}"
             git rm -rf . && git commit --allow-empty -m "Initialize manifest branch"
