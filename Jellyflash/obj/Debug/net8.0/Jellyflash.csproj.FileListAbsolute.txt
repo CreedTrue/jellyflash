@@ -1,0 +1,5 @@
+/app/obj/Debug/net8.0/Jellyflash.csproj.AssemblyReference.cache
+/app/obj/Debug/net8.0/Jellyflash.GeneratedMSBuildEditorConfig.editorconfig
+/app/obj/Debug/net8.0/Jellyflash.AssemblyInfoInputs.cache
+/app/obj/Debug/net8.0/Jellyflash.AssemblyInfo.cs
+/app/obj/Debug/net8.0/Jellyflash.csproj.CoreCompileInputs.cache

@@ -1,0 +1,9 @@
+{
+  "id": "f609e9e1-6d9b-4b13-9a43-074fcbb321a4",
+  "name": "Jellyflash",
+  "description": "Enables SWF playback via Ruffle.",
+  "category": "Playback",
+  "guid": "f609e9e1-6d9b-4b13-9a43-074fcbb321a4",
+  "version": "1.0.0.0",
+  "imageUrl": ""
+}

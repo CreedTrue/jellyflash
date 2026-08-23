@@ -1,0 +1,12 @@
+/app/obj/Release/net8.0/Jellyflash.csproj.AssemblyReference.cache
+/app/obj/Release/net8.0/Jellyflash.GeneratedMSBuildEditorConfig.editorconfig
+/app/obj/Release/net8.0/Jellyflash.AssemblyInfoInputs.cache
+/app/obj/Release/net8.0/Jellyflash.AssemblyInfo.cs
+/app/obj/Release/net8.0/Jellyflash.csproj.CoreCompileInputs.cache
+/app/bin/Release/net8.0/Jellyflash.deps.json
+/app/bin/Release/net8.0/Jellyflash.dll
+/app/bin/Release/net8.0/Jellyflash.pdb
+/app/obj/Release/net8.0/Jellyflash.dll
+/app/obj/Release/net8.0/refint/Jellyflash.dll
+/app/obj/Release/net8.0/Jellyflash.pdb
+/app/obj/Release/net8.0/ref/Jellyflash.dll

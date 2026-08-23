@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Jellyflash Configuration</title>
+</head>
+<body>
+    <div id="jellyflashConfigPage" data-role="page" class="page type-interior pluginConfigurationPage" data-require="emby-input,emby-button,emby-checkbox">
+        <div data-role="content">
+            <div class="content-primary">
+                <h1>Jellyflash</h1>
+                <p>Enables SWF playback via Ruffle.</p>
+                <form id="jellyflashConfigForm">
+                    <div class="checkboxContainer checkboxContainer-withDescription">
+                        <label>
+                            <input is="emby-checkbox" type="checkbox" id="chkAutoInject" />
+                            <span>Automatically Inject Ruffle Player Javascript</span>
+                        </label>
+                        <div class="fieldDescription checkboxFieldDescription">
+                            If checked, the plugin will attempt to patch Jellyfin's index.html on startup to enable the Flash player. 
+                            If you disable this, you must use the "JavaScript Injector" plugin and add the snippet manually.
+                        </div>
+                    </div>
+                    <div>
+                        <button is="emby-button" type="submit" class="raised button-submit block">
+                            <span>Save</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <script>
+            var JellyflashConfig = {
+                pluginUniqueId: 'f609e9e1-6d9b-4b13-9a43-074fcbb321a4'
+            };
+
+            document.querySelector('#jellyflashConfigPage').addEventListener('pageshow', function () {
+                Dashboard.showLoadingMsg();
+                var page = this;
+
+                ApiClient.getPluginConfiguration(JellyflashConfig.pluginUniqueId).then(function (config) {
+                    page.querySelector('#chkAutoInject').checked = config.AutomaticallyInjectJavascript;
+                    Dashboard.hideLoadingMsg();
+                });
+            });
+
+            document.querySelector('#jellyflashConfigForm').addEventListener('submit', function (e) {
+                Dashboard.showLoadingMsg();
+                var form = this;
+
+                ApiClient.getPluginConfiguration(JellyflashConfig.pluginUniqueId).then(function (config) {
+                    config.AutomaticallyInjectJavascript = form.querySelector('#chkAutoInject').checked;
+                    ApiClient.updatePluginConfiguration(JellyflashConfig.pluginUniqueId, config).then(Dashboard.processPluginConfigurationUpdateResult);
+                });
+
+                e.preventDefault();
+                return false;
+            });
+        </script>
+    </div>
+</body>
+</html>
