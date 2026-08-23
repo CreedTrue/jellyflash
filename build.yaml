@@ -1,6 +1,6 @@
 name: "Jellyflash"
 guid: "f609e9e1-6d9b-4b13-9a43-074fcbb321a4"
-version: "1.0.0.0"
+version: "1.0.0.1"
 targetAbi: "10.11.11.0"
 framework: "net9.0"
 owner: ""
@@ -13,4 +13,4 @@ category: "Playback"
 artifacts:
   - "Jellyflash.dll"
 changelog: >
-  1.0.0.0: Initial Release
+  1.0.0.1: Config page changes.

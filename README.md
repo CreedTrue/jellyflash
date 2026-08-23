@@ -44,7 +44,7 @@ Once built, the output will be written to `Jellyflash/bin/Release/<abi>/` (for e
 The included GitHub Actions pipeline generates and publishes the self-contained plugin package to the repository. Publishing a new version:
 
 1. Bump the `version` and update the `changelog` in `build.yaml`.
-2. Push a `v1.0.0.0` tag (or edit the settings to match your tag naming) on `master`.
+2. Push a `v1.0.0.1` tag (or edit the settings to match your tag naming) on `master`.
 3. GitHub Actions: the **Build Plugin** workflow compiles and packages the plugin, the **Publish Release** workflow uploads the package to the tagged GitHub Release and regenerates `manifest.json` on the `manifest-release` branch.
 4. Users install/update from the Catalog using the repository URL above.
 
