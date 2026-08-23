@@ -36,8 +36,8 @@ jobs:
           tag_name: ${{ github.event.release.tag_name }}
           files: |
             ./*
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   manifest:
     runs-on: ubuntu-latest
