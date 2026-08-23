@@ -9,6 +9,14 @@
     "versions": [
       {
         "changelog": "",
+        "checksum": "758dd9a0888c4ce64dd95346dd76cf8f",
+        "sourceUrl": "https://github.com/CreedTrue/jellyflash/releases/download/v0.1.0/jellyflash_1.0.0.0.zip",
+        "targetAbi": "10.11.11.0",
+        "timestamp": "2026-08-23T19:59:20Z",
+        "version": "1.0.0.0"
+      },
+      {
+        "changelog": "",
         "checksum": "2a8ddb59fe904902241a0ca06dfe262b",
         "sourceUrl": "https://github.com/CreedTrue/jellyflash/releases/download/v0.0.1/jellyflash_1.0.0.0.zip",
         "targetAbi": "10.11.11.0",
