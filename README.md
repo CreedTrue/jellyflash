@@ -14,9 +14,8 @@ Add the repository to your Jellyfin server:
 2. Click **Add Repository**.
 3. Enter the manifest URL:
    ```
-   https://raw.githubusercontent.com/<your-user-or-org>/jellyflash/manifest-release/manifest.json
+   https://raw.githubusercontent.com/CreedTrue/jellyflash/manifest-release/manifest.json
    ```
-   Replace `<your-user-or-org>` with your GitHub account or organization.
 4. Search for **Jellyflash** in the Catalog and click **Install**, then restart when prompted.
 
 ## How It Works
