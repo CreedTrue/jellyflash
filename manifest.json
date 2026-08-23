@@ -1,1 +1,20 @@
-[]
+[
+  {
+    "category": "Playback",
+    "description": "Enables SWF playback via Ruffle. Registers an item resolver so .swf files are scanned as Video items, and injects a web client script that adds a \"Play with Ruffle\" button.\n",
+    "guid": "f609e9e1-6d9b-4b13-9a43-074fcbb321a4",
+    "name": "Jellyflash",
+    "overview": "Enables SWF playback via Ruffle.",
+    "owner": "",
+    "versions": [
+      {
+        "changelog": "",
+        "checksum": "9ec659593edbfbdef30acf200f7cb8e9",
+        "sourceUrl": "https://github.com/CreedTrue/jellyflash/releases/download/v0.0.1/jellyflash_1.0.0.0.zip",
+        "targetAbi": "10.11.11.0",
+        "timestamp": "2026-08-23T19:13:36Z",
+        "version": "1.0.0.0"
+      }
+    ]
+  }
+]
