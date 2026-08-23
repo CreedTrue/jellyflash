@@ -1,0 +1,6 @@
+# .NET incremental build output
+Jellyflash/bin/
+
+# JPRM / publish artifacts
+manifest.json
+manifest-release/

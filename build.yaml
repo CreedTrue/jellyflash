@@ -1,0 +1,16 @@
+name: "Jellyflash"
+guid: "f609e9e1-6d9b-4b13-9a43-074fcbb321a4"
+version: "1.0.0.0"
+targetAbi: "10.11.11.0"
+framework: "net9.0"
+owner: ""
+overview: "Enables SWF playback via Ruffle."
+description: >
+  Enables SWF playback via Ruffle. Registers an item resolver so .swf files
+  are scanned as Video items, and injects a web client script that adds a
+  "Play with Ruffle" button.
+category: "Playback"
+artifacts:
+  - "Jellyflash.dll"
+changelog: >
+  1.0.0.0: Initial Release

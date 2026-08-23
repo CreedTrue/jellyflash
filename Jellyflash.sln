@@ -1,0 +1,9 @@
+Microsoft Visual Studio Solution 2022:
+Project("Jellyflash.csproj") = "Jellyflash", "Jellyflash\Jellyflash.csproj", "{0f2b31b0-3032-4b3c-9e79-f94e1a61f0c1}"
+GlobalSection(
+    Entries = 1
+    SolutionProperties = {7531fa7b-9b37-4ed2-94f4-2e79a9bf7f00}.0
+EndGlobalSection
+ProjectSection(
+    SccProjectUniqueId0 = {0f2b31b0-3032-4b3c-9e79-f94e1a61f0c9}
+EndProjectSection

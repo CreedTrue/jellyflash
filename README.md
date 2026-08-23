@@ -2,6 +2,23 @@
 
 A Jellyfin plugin that enables support for playing `.swf` Flash files natively in the web client using the open-source [Ruffle](https://ruffle.rs/) emulator.
 
+`Jellyflash` is **MIT licensed** and free for community use.
+
+## Plugin Repository
+
+Jellyflash is distributed as a Jellyfin plugin **repository** so it installs cleanly from the Catalog (the self-contained package layout is built automatically).
+
+Add the repository to your Jellyfin server:
+
+1. **Dashboard → Advanced → Plugins → Catalog** (or *Catalog* under Plugins).
+2. Click **Add Repository**.
+3. Enter the manifest URL:
+   ```
+   https://raw.githubusercontent.com/<your-user-or-org>/jellyflash/manifest-release/manifest.json
+   ```
+   Replace `<your-user-or-org>` with your GitHub account or organization.
+4. Search for **Jellyflash** in the Catalog and click **Install**, then restart when prompted.
+
 ## How It Works
 
 1. **Backend Integration**: The C# plugin registers an `IItemResolver` that looks for `.swf` files. This ensures your Flash files are scanned as `Video` items and appear in your Jellyfin library instead of being ignored.
@@ -21,39 +38,30 @@ Since the plugin is compiled for `.NET` (version 8 or 9 depending on the target)
 docker run --rm -v "$(pwd)/Jellyflash:/app" -w /app mcr.microsoft.com/dotnet/sdk:9.0 dotnet build -c Release
 ```
 
-Once built, the output will be written to `Jellyflash/bin/Release/<abi>/` (for example `net8.0` or `net9.0`).
+Once built, the output will be written to `Jellyflash/bin/Release/<abi>/` (for example `net8.0` or `net9.0`). This is raw build output, used only for local testing — it is **not** the install package (see Installation).
+
+## Publishing a Release
+
+The included GitHub Actions pipeline generates and publishes the self-contained plugin package to the repository. Publishing a new version:
+
+1. Bump the `version` and update the `changelog` in `build.yaml`.
+2. Push a `v1.0.0.0` tag (or edit the settings to match your tag naming) on `master`.
+3. GitHub Actions: the **Build Plugin** workflow compiles and packages the plugin, the **Publish Release** workflow uploads the package to the tagged GitHub Release and regenerates `manifest.json` on the `manifest-release` branch.
+4. Users install/update from the Catalog using the repository URL above.
+
+`GITHUB_TOKEN` is provided automatically by GitHub; no extra secrets are required.
 
 ## Installation
 
-Jellyfin plugins are self-contained packages: a plugin folder must contain the plugin DLL **plus** every dependency DLL it links against (the `lib/<abi>/...` tree declared in `Jellyflash.deps.json`) **plus** a runtime `meta.json`. The raw build output is **not** a valid install — copying `bin/Release/<abi>/` straight into the plugins folder causes Jellyfin to fail loading the plugin, mark it *malfunctioning*, and then **recursively delete the folder** on the next restart.
+The supported install path is the plugin **repository** described at the top of this page. Jellyfin resolves and writes the runtime `meta.json` and installs the plugin into `/config/plugins/Jellyflash/` automatically.
 
-Two supported installation methods:
-
-### 1. Plugin repository / Catalog (recommended)
-
-Publish the packaged plugin (using `Jellyflash/meta.json` as the manifest and `Jellyflash.deps.json` as the dependency list) to a Jellyfin plugin repository, then install it from the Jellyfin **Dashboard → Plugins → Catalog**. This resolves the `lib/` dependency DLLs and writes a correct runtime `meta.json` automatically.
-
-### 2. Manual complete layout
-
-If you must install manually, the `/config/plugins/Jellyflash/` folder must be fully self-contained and include every dependency DLL, for example:
-
-```
-Jellyflash/
-├─ meta.json                         # runtime manifest (id, version, targetAbi, assemblies, ...)
-└─ lib/net8.0/  (or the matching ABI)
-   ├─ MediaBrowser.Controller.dll
-   ├─ MediaBrowser.Model.dll
-   ├─ Jellyfin.Common.dll
-   └─ ... (every DLL referenced in Jellyflash.deps.json)
-```
-
-The bare build output only contains `Jellyflash.dll`/`.pdb`/`.deps.json`, so it must first be assembled into this complete layout. Deploying an incomplete folder is not supported and results in the fault-and-delete behavior described above.
-
-If a previous broken install has already been recorded as disabled on the server:
+If a previous broken/manual install has already been recorded as disabled on the server:
 
 1. With Jellyfin **stopped**, delete `/config/plugins/Jellyflash` (stopping the server avoids Windows file-lock errors).
 2. Restart once to clear the poisoned state.
-3. Then install a complete, self-contained folder (or the catalog package).
+3. Then install from the Catalog (or a manual complete layout).
+
+> **Manual layouts are unsupported.** Jellyfin plugins are self-contained packages: `Jellyflash.dll` plus every dependency DLL it links against (`lib/<abi>/...` from `Jellyflash.deps.json`) plus a runtime `meta.json`. Copying the raw `bin/Release/<abi>/` build output into `plugins/` causes Jellyfin to fail loading the plugin — it marks it *malfunctioning* and **recursively deletes the folder** on the next restart. Always install through the repository/Catalog.
 
 After a valid install restart the server and proceed:
 
